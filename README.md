@@ -33,3 +33,32 @@ Le script Easytools génère automatiquement :
     apt-get install -y gitlab
     
 **}**
+
+> Voici les catégoris de menu que vous pouvez mettre :
+> "admin", "parameter", "authentication", "mail", "security", "agent" et "apps"
+> 
+>## pour ajouter utiliser la variable suivante:
+> 
+>optionsMainMenu=(
+>
+>    "Administration" "admin"
+>
+>    "Administration de Proxmox" "proxmox"
+> 
+>    "Parametrage" "parameter"
+> 
+>    "Authentification" "authentication"
+> 
+>    "Messagerie" "mail"
+> 
+>    "Sécurité" "security"
+> 
+>    "Supervision" "agent"
+> 
+>    "Installation" "apps"
+>
+>    "[Manuel d'utilisation]" "help"
+> 
+>    "[Quitter]" "quit"
+> 
+>)
