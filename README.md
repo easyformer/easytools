@@ -81,7 +81,7 @@ Le script Easytools génère automatiquement :
 >
 >#commutatorWord="Mettre ici un mot ou groupe de mots sans espaces avec des underscores si'il le faut et qui sera utilisé comme commutateur de lancement"
 >
->    ## Mettre le code demmandé ici ##
+>    #Mettre le code demmandé ici...
 >    
 >}
 >
