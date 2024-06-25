@@ -14,7 +14,7 @@ Le script Easytools génère automatiquement :
  - et les commutateurs de lancement par mot.
 
 ## Voici un exemple de fonction à intégrer dans le code pour ce faire:
-> Les commantaires sont obligatoires...
+> Les commentaires sont obligatoires...
 
 **installation_gitlab(){**
 
@@ -39,7 +39,7 @@ Le script Easytools génère automatiquement :
 > 
 > **"admin"**, **"proxmox"**, **"parameter"**, **"authentication"**, **"mail"**, **"security"**, **"agent"** et **"apps"**
 
-## pour ajouter utiliser la variable suivante:
+## pour en ajouter utiliser la variable suivante:
 
 >**optionsMainMenu=(**
 >
@@ -65,7 +65,7 @@ Le script Easytools génère automatiquement :
 > 
 >**)**
 
-##Vous pouvez simplement ajouter des fonctions avec votre IA préférée en tappant:
+## Vous pouvez simplement ajouter des fonctions avec votre IA préférée en tappant:
 
 >Peux-tu me générer une fonction en shell pour ubuntu respectant la structure suivante:
 >
