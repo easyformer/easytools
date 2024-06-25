@@ -86,8 +86,10 @@ Le script Easytools génère automatiquement :
 >}
 >
 >Seules les catégories suivantes doivent être utilisées "admin", "proxmox", "parameter", "authentication", "mail", "security", "agent" et "apps".
+>
+>Le script devra faire ...
 
-Le script devra faire ...
+
 
 
 
