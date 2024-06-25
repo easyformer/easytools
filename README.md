@@ -36,10 +36,11 @@ Le script Easytools génère automatiquement :
 
 
 > Voici les catégoris de menu que vous pouvez mettre :
+> 
 > **"admin"**, **"proxmox"**, **"parameter"**, **"authentication"**, **"mail"**, **"security"**, **"agent"** et **"apps"**
 
-> pour ajouter utiliser la variable suivante:
-> 
+## pour ajouter utiliser la variable suivante:
+
 >**optionsMainMenu=(**
 >
 >    "Administration" **"admin"**
