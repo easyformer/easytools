@@ -62,7 +62,8 @@ Le script Easytools génère automatiquement :
     #commutatorWord="Mettre ici un mot ou groupe de mots sans espaces avec des underscores si'il le faut et qui sera utilisé comme commutateur de lancement"
         #Mettre le code demmandé ici...   
     }
-    Seules les catégories suivantes doivent être utilisées "admin", "proxmox", "parameter", "authentication", "mail", "security", "agent" et "apps".
+    Seules les catégories suivantes doivent être utilisées "admin", "proxmox", "parameter", "authentication", "mail", "security", "agent" et "apps" dans #categoryMenu.
+    il ne faut pas mettre d'espace avant les 5 premiers commentaires: #helpDescription, #categoryMenu, #nameMenu, #commutatorLetter et #commutatorWord.
     Le script devra faire ...
 
 
