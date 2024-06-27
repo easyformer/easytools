@@ -347,6 +347,40 @@ optionsMainMenu=(
 ####################     présents dans le menu     #########################
 ############################################################################
 
+generate_and_install_ssh_key(){
+    #helpDescription="Cette fonction génère une paire de clés SSH et installe la clé publique sur un serveur distant."
+    #categoryMenu="authentication"
+    #nameMenu="Générer et installer une clé SSH"
+    #commutatorLetter="k"
+    #commutatorWord="generate_install_ssh_key"
+
+    # Chemin du fichier de clé par défaut
+    KEY_FILE="$HOME/.ssh/id_rsa"
+    
+    # Génération de la paire de clés SSH
+    echo "Génération d'une paire de clés SSH..."
+    if [ ! -f "$KEY_FILE" ]; then
+        ssh-keygen -t rsa -b 4096 -f "$KEY_FILE" -N ""
+        echo "Paire de clés SSH générée avec succès."
+    else
+        echo "Une paire de clés SSH existe déjà à l'emplacement $KEY_FILE."
+    fi
+    
+    # Demander l'adresse de l'utilisateur distant et le mot de passe pour l'installation de la clé publique
+    read -p "Entrez l'adresse de l'utilisateur distant (ex. user@remote_host): " REMOTE_USER_HOST
+    read -sp "Entrez le mot de passe de l'utilisateur distant: " REMOTE_PASSWORD
+    echo
+    
+    # Installer la clé publique sur le serveur distant
+    echo "Installation de la clé publique sur le serveur distant..."
+    sshpass -p "$REMOTE_PASSWORD" ssh-copy-id -i "$KEY_FILE.pub" "$REMOTE_USER_HOST"
+    
+    if [ $? -eq 0 ]; then
+        echo "Clé publique installée avec succès sur $REMOTE_USER_HOST."
+    else
+        echo "Échec de l'installation de la clé publique."
+    fi
+}
 
 proxmox_admin() {
 #helpDescription="Administration de Proxmox"
