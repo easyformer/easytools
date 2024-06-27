@@ -15,7 +15,7 @@ Le script Easytools génère automatiquement :
 
 ## Pour l'utiliser sur votre Débian ou Ubuntu tappez simplement:
 
-bash -c "$(wget -qLO - https://github.com/easyformer/edit/main/easytools.sh)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/easyformer/easytools/main/easytools.sh)"
 
 ## Voici un exemple de fonction à intégrer dans le code pour ce faire:
 > Les commentaires sont obligatoires...
