@@ -850,7 +850,8 @@ if [[ -t 0 ]]; then
 else
     # Le script est exécuté via wget
     parser_fonctions << 'EOF'
-
+EOF
+fi
 # verifif de la presence des attributs
 for attribut in $*
 do
