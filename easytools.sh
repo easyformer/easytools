@@ -110,13 +110,13 @@ parser_fonctions() {
 
         # Check for meta information if current_function is set
         if [[ -n $current_function ]]; then
-            if [[ $line =~ ^\#helpDescription=\"(.*)\"$ ]]; then
+            if [[ $line =~ ^\s*\#helpDescription=\"(.*)\"$ ]]; then
                 helpDescriptions["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\#categoryMenu=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\s*\#categoryMenu=\"(.*)\"$ ]]; then
                 categoryMenus["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\#nameMenu=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\s*\#nameMenu=\"(.*)\"$ ]]; then
                 nameMenus["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\#commutatorLetter=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\s*\#commutatorLetter=\"(.*)\"$ ]]; then
 			echo "#commutatorLetter=${BASH_REMATCH[1]}"
 				# vérification des lettres en doublon
 				# for letter in "${commutatorLetters[@]}"; do
@@ -126,7 +126,7 @@ parser_fonctions() {
 					# fi
 				# done
                 commutatorLetters["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\#commutatorWord=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\s*\#commutatorWord=\"(.*)\"$ ]]; then
 				# vérification des mots en doublon
 				# for word in "${commutatorWords[@]}"; do
 					# if [[ -n "$word" ]] && [ "${BASH_REMATCH[1]}" == "$word" ]; then
