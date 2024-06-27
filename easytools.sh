@@ -137,7 +137,7 @@ parser_fonctions() {
                 commutatorWords["$current_function"]="${BASH_REMATCH[1]}"
             fi
         fi
-    done < "$0"
+    done
 }
 
 printInfoFunction(){
@@ -843,7 +843,13 @@ installation_gitlab() {
 ############################################################################
 
 # Appel de la fonction pour parser les fonctions
-parser_fonctions
+# Détection si le script est exécuté localement ou via wget
+if [[ -t 0 ]]; then
+    # Le script est exécuté localement (depuis un fichier)
+    parser_fonctions < "$0"
+else
+    # Le script est exécuté via wget
+    parser_fonctions << 'EOF'
 
 # verifif de la presence des attributs
 for attribut in $*
