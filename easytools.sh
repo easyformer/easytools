@@ -348,11 +348,11 @@ optionsMainMenu=(
 ############################################################################
 
 generate_and_install_ssh_key(){
-    #helpDescription="Cette fonction génère une paire de clés SSH et installe la clé publique sur un serveur distant."
-    #categoryMenu="authentication"
-    #nameMenu="Générer et installer une clé SSH"
-    #commutatorLetter="k"
-    #commutatorWord="generate_install_ssh_key"
+#helpDescription="Cette fonction génère une paire de clés SSH et installe la clé publique sur un serveur distant."
+#categoryMenu="authentication"
+#nameMenu="Générer et installer une clé SSH"
+#commutatorLetter="k"
+#commutatorWord="generate_install_ssh_key"
 
     # Chemin du fichier de clé par défaut
     KEY_FILE="$HOME/.ssh/id_rsa"
