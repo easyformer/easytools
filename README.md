@@ -13,6 +13,10 @@ Le script Easytools génère automatiquement :
  - Les commutateurs de lancement par lettre,
  - et les commutateurs de lancement par mot.
 
+## Pour l'utiliser sur votre Débian ou Ubuntu tappez simplement:
+
+bash -c "$(wget -qLO - https://github.com/easyformer/edit/main/easytools.sh)"
+
 ## Voici un exemple de fonction à intégrer dans le code pour ce faire:
 > Les commentaires sont obligatoires...
 
