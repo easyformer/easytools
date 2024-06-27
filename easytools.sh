@@ -313,6 +313,17 @@ printSubMenu() {
 
 }
 
+
+# Appel de la fonction pour parser les fonctions
+# Détection si le script est exécuté localement ou via wget
+if [[ -t 0 ]]; then
+    # Le script est exécuté localement (depuis un fichier)
+    parser_fonctions < "$0"
+else
+    # Le script est exécuté via wget
+    parser_fonctions << 'EOF'
+
+    
 ############################################################################
 # Les informations suivantes doivent toujours être présentes dans les fonctions
 # pour automatiser l'aide, le lancement par attribut et l'insertion dans les menus :
@@ -841,15 +852,7 @@ installation_gitlab() {
 ############################################################################
 ####################      Appel des fonctions      #########################
 ############################################################################
-
-# Appel de la fonction pour parser les fonctions
-# Détection si le script est exécuté localement ou via wget
-if [[ -t 0 ]]; then
-    # Le script est exécuté localement (depuis un fichier)
-    parser_fonctions < "$0"
-else
-    # Le script est exécuté via wget
-    parser_fonctions << 'EOF'
+    
 EOF
 fi
 # verifif de la presence des attributs
