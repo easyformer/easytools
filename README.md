@@ -15,7 +15,11 @@ Le script Easytools génère automatiquement :
 
 ## Pour l'utiliser sur votre Débian ou Ubuntu tappez simplement:
     
-    sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/easyformer/easytools/main/easytools.sh)"
+    cd /root
+    wget -qO- https://raw.githubusercontent.com/easyformer/easytools/main/easytools.sh
+    chmod +x easytools.sh
+    ./easytools.sh
+    
 
 ## Voici un exemple de fonction à intégrer dans le code pour ce faire:
 > Les commentaires sont obligatoires...
