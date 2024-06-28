@@ -113,7 +113,7 @@ parser_fonctions() {
                 commutatorWords["$current_function"]="${BASH_REMATCH[1]}"
             fi
         fi
-    done < "$tools_functions"
+    done < echo "$tools_functions"
 }
 
 printInfoFunction(){
