@@ -781,8 +781,6 @@ EOF
 # Chargement des tools (foncions personnalisées)
 eval "$tools_functions"
 
-generate_and_install_ssh_key
-
 # Appel de la fonction pour parser les fonctions
 parser_fonctions "$tools_functions"
 
