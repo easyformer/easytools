@@ -167,7 +167,7 @@ printHelpMore() {
 }
 
 printMainPage(){
-	clear
+	#clear
 	printLogoAndNameScript
 	for ((i = 0; i < ${#commutatorLettersErrors[@]}; i+=1)); do
 		echo -e "${rougefonce}  Attention le commutateur -${commutatorLettersErrors[$i]} est en doublon${neutre}"
@@ -213,7 +213,7 @@ printMainMenu() {
 }
 
 printSubMenu() {
-	clear
+	#clear
 	printLogoAndNameScript
     echo ""
 	menuTitle="$2"
