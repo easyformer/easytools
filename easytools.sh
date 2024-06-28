@@ -113,7 +113,7 @@ parser_fonctions() {
                 commutatorWords["$current_function"]="${BASH_REMATCH[1]}"
             fi
         fi
-    done < "$0"
+    done < "$tools_functions"
 }
 
 printInfoFunction(){
@@ -283,7 +283,7 @@ optionsMainMenu=(
     "Quitter" "quit"
 )
 ############################################################################
-cat << EOF
+tools_functions=$(cat << 'EOF'
 ############################################################################
 ####################   Déclaration des fonctions   #########################
 ####################     relatives aux outils      #########################
@@ -776,6 +776,11 @@ installation_gitlab() {
 ####################      Appel des fonctions      #########################
 ############################################################################
 EOF
+)
+
+# Chargement des tools (foncions personnalisées)
+eval "$tools_functions"
+
 
 # Appel de la fonction pour parser les fonctions
 parser_fonctions
