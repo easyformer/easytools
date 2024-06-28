@@ -113,7 +113,7 @@ parser_fonctions() {
                 commutatorWords["$current_function"]="${BASH_REMATCH[1]}"
             fi
         fi
-    done < echo "$tools_functions"
+    done
 }
 
 printInfoFunction(){
@@ -781,9 +781,8 @@ EOF
 # Chargement des tools (foncions personnalisées)
 eval "$tools_functions"
 
-
 # Appel de la fonction pour parser les fonctions
-parser_fonctions
+parser_fonctions < "$tools_functions"
 
 # verifif de la presence des attributs
 for attribut in $*
