@@ -8,19 +8,10 @@
 # F O R M E R  ######################################
 
 nomduscript="EasyTools"
-# http://www.octetmalin.net/linux/tutoriels/figlet.php
-# Exemple d'utilisation
-# figlet -ck `wget -qO- icanhazip.com`
 
 ############################################################################
 ####################   Déclaration des variables   #########################
 ############################################################################
-
-# Définition des couleurs du script
-# http://ti1.free.fr/index.php/bash-mise-en-forme-de-textes-dans-un-terminal/
-# https://stackabuse.com/how-to-change-the-output-color-of-echo-in-linux/
-# Exemple d'utilisation
-# echo -e "${rougefonce}Bonjour${neutre} ${jaune}les gens${neutre}"
 
 maron='\e[0;3m'
 noir='\e[0;30m'
@@ -110,109 +101,63 @@ parser_fonctions() {
 
         # Check for meta information if current_function is set
         if [[ -n $current_function ]]; then
-            if [[ $line =~ ^\s*\#helpDescription=\"(.*)\"$ ]]; then
+            if [[ $line =~ ^\#helpDescription=\"(.*)\"$ ]]; then
                 helpDescriptions["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\s*\#categoryMenu=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\#categoryMenu=\"(.*)\"$ ]]; then
                 categoryMenus["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\s*\#nameMenu=\"(.*)\"$ ]]; then
+            elif [[ $line =~ ^\#nameMenu=\"(.*)\"$ ]]; then
                 nameMenus["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\s*\#commutatorLetter=\"(.*)\"$ ]]; then
-			echo "#commutatorLetter=${BASH_REMATCH[1]}"
-				# vérification des lettres en doublon
-				# for letter in "${commutatorLetters[@]}"; do
-					# if [[ -n "$letter" ]] && [ "${BASH_REMATCH[1]}" == "$letter" ]; then
-				# echo "--${commutatorLetters[@]} ++$letter"
-						# commutatorLettersErrors+=("$letter")
-					# fi
-				# done
+            elif [[ $line =~ ^\#commutatorLetter=\"(.*)\"$ ]]; then
                 commutatorLetters["$current_function"]="${BASH_REMATCH[1]}"
-            elif [[ $line =~ ^\s*\#commutatorWord=\"(.*)\"$ ]]; then
-				# vérification des mots en doublon
-				# for word in "${commutatorWords[@]}"; do
-					# if [[ -n "$word" ]] && [ "${BASH_REMATCH[1]}" == "$word" ]; then
-				# echo "${commutatorWords[@]} $word"
-						# commutatorWordsErrors+=("$word")
-					# fi
-				# done
+            elif [[ $line =~ ^\#commutatorWord=\"(.*)\"$ ]]; then
                 commutatorWords["$current_function"]="${BASH_REMATCH[1]}"
             fi
         fi
-    done
+    done < "$0"
 }
 
 printInfoFunction(){
 	# Afficher les informations extraites
-    echo "  -------------------------------------"
-    echo -e "${vertfonce}       Manuel pour les développeurs${neutre}"
-    echo "  -------------------------------------"
-	menu_options=()
-	for ((i = 0; i < ${#optionsMainMenu[@]}; i+=2)); do
-		menu_options+=("${optionsMainMenu[$i]}")
+    echo ""
+    echo -e "${vertfonce}     Manuel pour les développeurs${neutre}"
+    echo ""
+	for func in "${!helpDescriptions[@]}"; do
+		echo "Fonction: $func"
+		echo "  helpDescription: ${helpDescriptions[$func]}"
+		echo "  categoryMenu: ${categoryMenus[$func]}"
+		echo "  nameMenu: ${nameMenus[$func]}"
+		echo "  commutatorLetter: ${commutatorLetters[$func]}"
+		echo "  commutatorWord: ${commutatorWords[$func]}"
+		echo ""
 	done
-	for opt in "${menu_options[@]}"; do
-        for ((i = 0; i < ${#menu_options[@]}; i++)); do
-            if [[ "$opt" == "${menu_options[$i]}" ]]; then
-                if [[ "${optionsMainMenu[$((i * 2 + 1))]}" != "quit" ]] && [[ "${optionsMainMenu[$((i * 2 + 1))]}" != "help" ]]; then
-					echo -e "${vertfonce}  ${optionsMainMenu[$((i * 2))]}${neutre}"
-					for func in "${!helpDescriptions[@]}"; do
-						if [[ "${optionsMainMenu[$((i * 2 + 1))]}" == "${categoryMenus[$func]}" ]]; then
-							echo "    Fonction: $func"
-							echo "      helpDescription: ${helpDescriptions[$func]}"
-							echo "      categoryMenu: ${categoryMenus[$func]}"
-							echo "      nameMenu: ${nameMenus[$func]}"
-							echo "      commutatorLetter: ${commutatorLetters[$func]}"
-							echo "      commutatorWord: ${commutatorWords[$func]}"
-							echo ""
-						fi
-					done
-                fi
-            fi
-        done
-    done
 }
 
 printHelp() {
 	printLogoAndNameScript
-    echo "  -------------------------------------"
-    echo -e "${vertfonce}          Manuel d'utilisation${neutre}"
-    echo "  -------------------------------------"
-    echo "  [Tappez q pour quitter l'aide]"
     echo ""
-	menu_options=()
-	for ((i = 0; i < ${#optionsMainMenu[@]}; i+=2)); do
-		menu_options+=("${optionsMainMenu[$i]}")
+    echo -e "${vertfonce}     Manuel d'utilisation${neutre}"
+    echo ""
+    echo "Tappez q pour quitter l'aide."
+    echo ""
+	
+	for func in "${!helpDescriptions[@]}"; do
+		if [[ -n ${commutatorLetters[$func]} && -n ${commutatorWords[$func]} ]];then
+			echo -e "-${commutatorLetters[$func]} ou --${commutatorWords[$func]} (${categoryMenus[$func]})"
+			echo "  ${helpDescriptions[$func]}"
+			echo ""
+		elif [[ -n ${commutatorLetters[$func]} ]];then
+			echo -e "-${commutatorLetters[$func]} (${categoryMenus[$func]})"
+			echo "  ${helpDescriptions[$func]}"
+			echo ""
+		elif [[ -n ${commutatorWords[$func]} ]];then
+			echo -e "--${commutatorWords[$func]} (${categoryMenus[$func]})"
+			echo "  ${helpDescriptions[$func]}"
+			echo ""
+		fi
 	done
-	for opt in "${menu_options[@]}"; do
-        for ((i = 0; i < ${#menu_options[@]}; i++)); do
-            if [[ "$opt" == "${menu_options[$i]}" ]]; then
-                if [[ "${optionsMainMenu[$((i * 2 + 1))]}" != "quit" ]] && [[ "${optionsMainMenu[$((i * 2 + 1))]}" != "help" ]]; then
-					echo -e "${vertfonce}  ${optionsMainMenu[$((i * 2))]}${neutre}"
-					for func in "${!helpDescriptions[@]}"; do
-						if [[ "${optionsMainMenu[$((i * 2 + 1))]}" == "${categoryMenus[$func]}" ]]; then
-							if [[ -n ${commutatorLetters[$func]} && -n ${commutatorWords[$func]} ]];then
-								echo -e "  -${commutatorLetters[$func]} ou --${commutatorWords[$func]} (${categoryMenus[$func]})"
-								echo "      ${helpDescriptions[$func]}"
-								echo ""
-							elif [[ -n ${commutatorLetters[$func]} ]];then
-								echo -e "  -${commutatorLetters[$func]} (${categoryMenus[$func]})"
-								echo "      ${helpDescriptions[$func]}"
-								echo ""
-							elif [[ -n ${commutatorWords[$func]} ]];then
-								echo -e "  --${commutatorWords[$func]} (${categoryMenus[$func]})"
-								echo "      ${helpDescriptions[$func]}"
-								echo ""
-							fi
-						fi
-					done
-                fi
-            fi
-        done
-    done
-	
-	
 	printInfoFunction
     echo ""
-    echo "  [Tappez q pour quitter l'aide]"
+    echo "Tappez q pour quitter l'aide."
     echo ""
 }
 
@@ -252,7 +197,6 @@ printMainMenu() {
             if [[ "$opt" == "${menu_options[$i]}" ]]; then
                 if [[ "${optionsMainMenu[$((i * 2 + 1))]}" == "quit" ]]; then
 					exit 1
-                    #break 2
                 elif [[ "${optionsMainMenu[$((i * 2 + 1))]}" == "help" ]]; then
 					printHelpMore
                     printMainPage
@@ -287,9 +231,9 @@ printSubMenu() {
 			sub_menu_function+=("$func")
 		fi
 	done
-	sub_menu_text+=("[Manuel d'utilisation]")
+	sub_menu_text+=("Manuel d'utilisation")
 	sub_menu_function+=("help")
-	sub_menu_text+=("[Retour au menu principal]")
+	sub_menu_text+=("Retour au menu principal")
 	sub_menu_function+=("quit")
 	PS3='  Veuillez choisir une option: '
     select optMenu in "${sub_menu_text[@]}"; do
@@ -313,17 +257,6 @@ printSubMenu() {
 
 }
 
-
-# Appel de la fonction pour parser les fonctions
-# Détection si le script est exécuté localement ou via wget
-if [[ -t 0 ]]; then
-    # Le script est exécuté localement (depuis un fichier)
-    parser_fonctions < "$0"
-else
-    # Le script est exécuté via wget
-    parser_fonctions << 'EOF'
-
-    
 ############################################################################
 # Les informations suivantes doivent toujours être présentes dans les fonctions
 # pour automatiser l'aide, le lancement par attribut et l'insertion dans les menus :
@@ -334,21 +267,20 @@ else
 #commutatorLetter=""
 #commutatorWord=""
 ############################################################################
-# Voici les catégoris de menu que vous pouvez mettre :
+# Voici les catégories de menu que vous pouvez mettre :
 #    "admin", "parameter", "authentication", "mail", "security", "agent" et "apps"
 ############################################################################
 # pour en rajouter utiliser la variable suivante:
 optionsMainMenu=(
     "Administration" "admin"
-    "Administration de Proxmox" "proxmox"
     "Parametrage" "parameter"
     "Authentification" "authentication"
     "Messagerie" "mail"
     "Sécurité" "security"
     "Supervision" "agent"
     "Installation" "apps"
-    "[Manuel d'utilisation]" "help"
-    "[Quitter]" "quit"
+    "Manuel d'utilisation" "help"
+    "Quitter" "quit"
 )
 ############################################################################
 
@@ -391,15 +323,6 @@ generate_and_install_ssh_key(){
     else
         echo "Échec de l'installation de la clé publique."
     fi
-}
-
-proxmox_admin() {
-#helpDescription="Administration de Proxmox"
-#categoryMenu="proxmox"
-#nameMenu="Administration de Proxmox"
-#commutatorLetter=""
-#commutatorWord="admin-proxmox"
-    printSubMenu 
 }
 
 mise_a_jour_liste_packages() {
@@ -852,9 +775,10 @@ installation_gitlab() {
 ############################################################################
 ####################      Appel des fonctions      #########################
 ############################################################################
-    
-EOF
-fi
+
+# Appel de la fonction pour parser les fonctions
+parser_fonctions
+
 # verifif de la presence des attributs
 for attribut in $*
 do
