@@ -43,14 +43,14 @@ Le script Easytools génère automatiquement :
 ## Pour en ajouter utiliser la variable suivante:
 
     optionsMainMenu=(
-        "Administration" **"admin"
-        "Administration de Proxmox" **"proxmox"
-        "Parametrage" **"parameter"
-        "Authentification" **"authentication"
-        "Messagerie" **"mail"
-        "Sécurité" **"security"
-        "Supervision" **"agent"
-        "Installation" **"apps"
+        "Administration" "admin"
+        "Administration de Proxmox" "proxmox"
+        "Parametrage" "parameter"
+        "Authentification" "authentication"
+        "Messagerie" "mail"
+        "Sécurité" "security"
+        "Supervision" "agent"
+        "Installation" "apps"
         "[Manuel d'utilisation]" "help"
         "[Quitter]" "quit"
     )
