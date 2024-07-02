@@ -3,8 +3,8 @@
 #    /___/`    # easytools.sh  
 #    (O,O)     # Utilité: ce script sert à configurer les serveurs
 #   /(   )\    # Usage: easytools.sh -option1 -option2 ... (Voir l'aide -h)
-# --==M=M==--  # Auteur: Johny BIGOUD <j.bigoud@flowerpower.org>
-#     Easy     # Mise à jour le: 00/00/0000
+# --==M=M==--  # Auteur: Alex FALZON
+#     Easy     # Mise à jour le: 15/07/2024
 # F O R M E R  ######################################
 
 nomduscript="EasyTools"
