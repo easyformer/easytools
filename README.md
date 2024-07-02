@@ -13,6 +13,10 @@ Le script Easytools génère automatiquement :
  - Les commutateurs de lancement par lettre,
  - et les commutateurs de lancement par mot.
 
+## Capture de l'interface
+
+![easytools_capture](/easytools_capture.png "easytools_capture").
+
 ## Pour l'utiliser sur votre Débian ou Ubuntu tappez simplement:
     
     cd /root
