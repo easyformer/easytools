@@ -40,7 +40,7 @@ cyanclair='\e[1;36m'
 grisclair='\e[0;37m'
 blanc='\e[1;37m'
 neutre='\e[0;m'
-whoami
+
 sudo apt-get -y install figlet > /dev/null
 
 # Initialisation des tableaux logo et nom du script
