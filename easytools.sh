@@ -41,7 +41,7 @@ grisclair='\e[0;37m'
 blanc='\e[1;37m'
 neutre='\e[0;m'
 
-sudo apt-get -y install figlet > /dev/null
+apt-get -y install figlet > /dev/null
 
 # Initialisation des tableaux logo et nom du script
 declare -a nomScripMultiligne
